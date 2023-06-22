@@ -6,8 +6,6 @@
 using namespace std;
 
 int tarr[1001][1001];
-int visit[1001][1001];
-int move[1001][1001];
 queue<pair<int, int>> q;
 
 int x_move[4] = { -1, 1, 0, 0 };
