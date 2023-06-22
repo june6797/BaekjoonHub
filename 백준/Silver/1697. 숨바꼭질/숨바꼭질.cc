@@ -6,7 +6,7 @@ int visit[100001];
 int ans[100001];
 queue<int> q;
 
-void DFS(int N, int K) {
+void BFS(int N, int K) {
 	q.push(N);
 	visit[N] = 1;
 	while (q.front() != K)
@@ -41,7 +41,7 @@ void DFS(int N, int K) {
 int main() {
 	int N, K;
 	cin >> N >> K;
-	DFS(N, K);
+	BFS(N, K);
 
 	cout << ans[K];
 }
