@@ -6,7 +6,6 @@ using namespace std;
 int arr[9][9];
 vector <pair<int, int>> safe;
 vector <pair<int, int>> virus;
-vector <pair<int, int>> wall;
 queue<pair<int, int>> q;
 
 int x_move[4] = { -1, 1, 0, 0 };
@@ -48,10 +47,6 @@ int main() {
 			if (num == 0)
 			{
 				safe.push_back({ i, j });
-			}
-			else if (num == 1)
-			{
-				wall.push_back({ i, j });
 			}
 			else if (num == 2)
 			{
