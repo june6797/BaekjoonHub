@@ -3,9 +3,9 @@
 using namespace std;
 
 #define INF 1000000000
-int adj[5001][5001];
-int dist[5001];
-int visited[5001];
+int adj[1001][1001];
+int dist[1001];
+int visited[1001];
 
 int get_small_node(int N) {
 	int min = INF + 1;
