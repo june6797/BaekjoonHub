@@ -3,6 +3,9 @@
 using namespace std;
 
 int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	int N, M, i, j;
 	cin >> N >> M;
@@ -17,10 +20,7 @@ int main() {
 	for (int a = 0; a < M; a++)
 	{
 		cin >> i >> j;
-		ans[a] =  S[j] - S[i - 1];
+		cout << S[j] - S[i - 1] << "\n";
 	}
-	for (int i = 0; i < M; i++)
-	{
-		cout << ans[i] << "\n";
-	}
+	
 }
