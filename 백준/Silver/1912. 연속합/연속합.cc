@@ -18,7 +18,6 @@ int main() {
 		}
 		else
 		{
-			dp[i] = 0;
 			ans = max(ans, dp[i - 1] + num);
 		}
 	}
