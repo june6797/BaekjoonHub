@@ -28,6 +28,7 @@ void insert(Node& node, string str, int idx, int& ans) {
 	if (node.check == 1)
 	{
 		ans = 1;
+		return;
 	}
 	int num = str.at(idx) - 48;
 	if (node.child[num] == nullptr)
@@ -63,6 +64,14 @@ int main() {
 				str = v[i][j];
 
 				insert(root, str, 0, ans);
+				if (ans == 1)
+				{
+					break;
+				}
+			}
+			if (ans == 1)
+			{
+				break;
 			}
 		}
 
