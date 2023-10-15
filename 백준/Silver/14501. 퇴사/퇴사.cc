@@ -1,8 +1,7 @@
 #include <iostream>
 using namespace std;
-
-int arr[2][16];
-int dp[16];
+int arr[2][17];
+int dp[17];
 int main() {
 	int N, ans = 0;
 	cin >> N;
@@ -22,6 +21,5 @@ int main() {
 		}
 		ans = max(ans, dp[i]);
 	}
-
 	cout << ans;
 }
