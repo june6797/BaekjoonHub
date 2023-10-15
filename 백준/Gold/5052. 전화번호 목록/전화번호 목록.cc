@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 #include <string>
 using namespace std;
 
@@ -47,34 +46,24 @@ int main() {
 	for (int i = 0; i < T; i++)
 	{
 		Node root;
-		vector <string> v;
+		vector <string> v[11];
 		int n;
 		cin >> n;
 		int ans = 0;
-
 		for (int j = 0; j < n; j++)
 		{
 			cin >> str;
-			v.push_back(str);
+			int l = str.length();
+			v[l].push_back(str);
 		}
-		sort(v.begin(), v.end());
-		/*for (int i = 1; i < 10; i++)
+		for (int i = 1; i < 11; i++)
 		{
 			for (int j = 0; j < v[i].size(); j++)
 			{
 				str = v[i][j];
 
 				insert(root, str, 0, ans);
-				if (ans == 1)
-				{
-					break;
-				}
 			}
-		}*/
-		for (int i = 0; i < v.size(); i++)
-		{
-			str = v[i];
-			insert(root, str, 0, ans);
 		}
 
 		if (ans == 1)
