@@ -15,7 +15,7 @@ int main() {
 	}
 	for (int i = 1; i <= k; i++)
 	{
-		dp[i] = 100001;
+		dp[i] = 10001;
 	}
 	for (int i = 0; i < n; i++)
 	{
@@ -24,7 +24,7 @@ int main() {
 			dp[j] = min(dp[j - coin[i]] + 1, dp[j]);
 		}
 	}
-	if (dp[k] >= 100001)
+	if (dp[k] >= 10001)
 	{
 		cout << "-1\n";
 	}
