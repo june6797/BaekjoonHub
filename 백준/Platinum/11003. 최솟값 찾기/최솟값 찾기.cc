@@ -20,7 +20,7 @@ int main() {
 		}
 		d.push_back({ i, num });
 
-		while (d.front().first < i - L + 1)
+		if (d.front().first < i - L + 1)
 		{
 			d.pop_front();
 		}
