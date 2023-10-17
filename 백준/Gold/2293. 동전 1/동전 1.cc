@@ -16,18 +16,15 @@ int main() {
 		cin >> num;
 		coin[i] = num;
 	}
-
+	dp[0] = 1;
 	for (int i = 0; i < n; i++)
 	{
-		if (coin[i] <= k)
+		for (int j = coin[i]; j <= k; j++)
 		{
-			dp[coin[i]]++;
-			for (int j = coin[i] + 1; j <= k; j++)
-			{
-				dp[j] += dp[j - coin[i]];
-			}
+			dp[j] += dp[j - coin[i]];
 		}
 	}
-    cout << dp[k] << "\n";
+
+	cout << dp[k] << "\n";
 
 }
