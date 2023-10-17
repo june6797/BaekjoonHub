@@ -1,11 +1,9 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
+
 using namespace std;
 
 int dp[10001];
 int coin[101];
-vector <int> v;
 
 int main() {
 	int n, k;
