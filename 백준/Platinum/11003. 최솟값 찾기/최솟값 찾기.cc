@@ -13,22 +13,13 @@ int main() {
 	{
 		int num;
 		cin >> num;
-		if (d.empty())
+
+		while (!d.empty() && d.back().second > num)
 		{
-			d.push_back({ i, num });
+			d.pop_back();
 		}
-		else
-		{
-			while (d.back().second > num)
-			{
-				d.pop_back();
-				if (d.empty())
-				{
-					break;
-				}
-			}
-			d.push_back({ i, num });
-		}
+		d.push_back({ i, num });
+
 		while (d.front().first < i - L + 1)
 		{
 			d.pop_front();
