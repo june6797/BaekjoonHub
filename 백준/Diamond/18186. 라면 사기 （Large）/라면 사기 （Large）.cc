@@ -28,7 +28,6 @@ int main() {
 	}
 	else
 	{
-
 		for (int i = 0; i < N; i++)
 		{
 			if (arr[i + 1] <= arr[i + 2])
@@ -39,12 +38,6 @@ int main() {
 				arr[i] -= check;
 				arr[i + 1] -= check;
 				arr[i + 2] -= check;
-
-				if (arr[i] != 0)
-				{
-					ans += B * arr[i];
-					arr[i] = 0;
-				}
 			}
 			else
 			{
@@ -58,12 +51,9 @@ int main() {
 				arr[i] -= check;
 				arr[i + 1] -= check;
 				arr[i + 2] -= check;
-				if (arr[i] != 0)
-				{
-					ans += B * arr[i];
-					arr[i] = 0;
-				}
 			}
+			ans += B * arr[i];
+			arr[i] = 0;
 		}
 	}
 	cout << ans;
