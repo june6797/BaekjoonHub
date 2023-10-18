@@ -17,52 +17,42 @@ int main() {
 		cin >> arr[i];
 	}
 	long long int ans = 0;
-	/*if (B < C)
+
+	for (int i = 0; i < N; i++)
 	{
-		for (int i = 0; i < N; i++)
+		if (arr[i + 1] <= arr[i + 2])
 		{
-			ans += arr[i];
-			ans = ans * B;
+			int check = min(arr[i], arr[i + 1]);
+
+			ans += 7 * check;
+			arr[i] -= check;
+			arr[i + 1] -= check;
+			arr[i + 2] -= check;
+
+			if (arr[i] != 0)
+			{
+				ans += 3 * arr[i];
+				arr[i] = 0;
+			}
+		}
+		else
+		{
+			int check = min(arr[i], arr[i + 1] - arr[i + 2]);
+			ans += 5 * check;
+			arr[i] -= check;
+			arr[i + 1] -= check;
+
+			check = min(arr[i], arr[i + 2]);
+			ans += 7 * check;
+			arr[i] -= check;
+			arr[i + 1] -= check;
+			arr[i + 2] -= check;
+			if (arr[i] != 0)
+			{
+				ans += 3 * arr[i];
+				arr[i] = 0;
+			}
 		}
 	}
-	else
-	{*/
-		for (int i = 0; i < N; i++)
-		{
-			if (arr[i + 1] <= arr[i + 2])
-			{
-				int check = min(arr[i], arr[i + 1]);
-
-				ans += 7 * check;
-				arr[i] -= check;
-				arr[i + 1] -= check;
-				arr[i + 2] -= check;
-
-				if (arr[i] != 0)
-				{
-					ans += 3 * arr[i];
-					arr[i] = 0;
-				}
-			}
-			else
-			{
-				int check = min(arr[i], arr[i + 1] - arr[i + 2]);
-				ans += 5 * check;
-				arr[i] -= check;
-				arr[i + 1] -= check;
-
-				check = min(arr[i], arr[i + 2]);
-				ans += 7 * check;
-				arr[i] -= check;
-				arr[i + 1] -= check;
-				arr[i + 2] -= check;
-				if (arr[i] != 0)
-				{
-					ans += 3 * arr[i];
-					arr[i] = 0;
-				}
-			}
-		}
-	//}
 	cout << ans;
 }
