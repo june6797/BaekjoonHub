@@ -2,21 +2,21 @@
 
 using namespace std;
 
-long long int arr[1000003];
+long long int arr[10003];
 
 int main() {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	long long int N, B, C;
+	int N;
 	cin >> N;
 
 	for (int i = 0; i < N; i++)
 	{
 		cin >> arr[i];
 	}
-	long long int ans = 0;
+	int ans = 0;
 
 	for (int i = 0; i < N; i++)
 	{
@@ -28,12 +28,6 @@ int main() {
 			arr[i] -= check;
 			arr[i + 1] -= check;
 			arr[i + 2] -= check;
-
-			if (arr[i] != 0)
-			{
-				ans += 3 * arr[i];
-				arr[i] = 0;
-			}
 		}
 		else
 		{
@@ -47,12 +41,9 @@ int main() {
 			arr[i] -= check;
 			arr[i + 1] -= check;
 			arr[i + 2] -= check;
-			if (arr[i] != 0)
-			{
-				ans += 3 * arr[i];
-				arr[i] = 0;
-			}
 		}
+		ans += 3 * arr[i];
+		arr[i] = 0;
 	}
 	cout << ans;
 }
