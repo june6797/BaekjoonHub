@@ -25,11 +25,11 @@ int main() {
 			}
 			else
 			{
-				arr[i][j] = arr[i - 1][j - 1] % b + arr[i - 1][j + 1] % b;
+				arr[i][j] = (arr[i - 1][j - 1] + arr[i - 1][j + 1]) % b;
 			}
 		}
 	}
-	long ans = 0;
+	int ans = 0;
 	for (int i = 0; i < 10; i++)
 	{
 		ans = (ans + arr[N][i]) % b;
