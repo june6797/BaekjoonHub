@@ -1,48 +1,36 @@
 #include <iostream>
-#include <queue>
 #include <vector>
 using namespace std;
 
-vector <int> adj[1001];
-queue <int> q;
+vector<int> a[1001];
 int visit[1001];
 
-void BFS(int start) {
-	q.push(start);
+void DFS(int start) {
 	visit[start] = 1;
-
-	while (!q.empty())
+	for (int i = 0; i < a[start].size(); i++)
 	{
-		int a = q.front();
-		q.pop();
-		for (int i = 0; i < adj[a].size(); i++)
+		if (visit[a[start][i]] == 0)
 		{
-			if (visit[adj[a][i]] == 0)
-			{
-				q.push(adj[a][i]);
-				visit[adj[a][i]] = 1;
-			}
+			DFS(a[start][i]);
 		}
-
 	}
 }
 
-
-
 int main() {
-	int N, M, a, b, ans = 0;
+	int N, M, ans = 0;
 	cin >> N >> M;
 	for (int i = 0; i < M; i++)
 	{
-		cin >> a >> b;
-		adj[a].push_back(b);
-		adj[b].push_back(a);
+		int u, v;
+		cin >> u >> v;
+		a[u].push_back(v);
+		a[v].push_back(u);
 	}
-	for (int i = 1; i < N + 1; i++)
+	for (int i = 1; i <= N; i++)
 	{
 		if (visit[i] == 0)
 		{
-			BFS(i);
+			DFS(i);
 			ans++;
 		}
 	}
