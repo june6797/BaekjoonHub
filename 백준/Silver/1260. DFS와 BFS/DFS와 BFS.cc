@@ -7,7 +7,6 @@ using namespace std;
 vector<int> v[1001];
 queue<int> q;
 int visited[1001];
-int ans;
 void DFS(int start) {
 	visited[start] = 1;
 	cout << start << " ";
