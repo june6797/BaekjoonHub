@@ -40,6 +40,10 @@ int main() {
 		if (v[i].size() > 0)
 		{
 			DFS(i, 0);
+			if (ans == 1)
+			{
+				break;
+			}
 		}
 	}
 	cout << ans;
