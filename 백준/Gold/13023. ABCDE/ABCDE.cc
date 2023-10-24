@@ -19,7 +19,7 @@ void DFS(int start, int check) {
 			DFS(v[start][i], check + 1);
 		}
 	}
-	
+
 	visited[start] = 0;
 }
 int main() {
