@@ -5,6 +5,7 @@ using namespace std;
 deque<pair<int, int>> d;
 int arr[101][101];
 char change[10001];
+
 int main() {
 	int N, K, L, ans = 0;
 	int x_head = 1, y_head = 1;
@@ -40,8 +41,6 @@ int main() {
 		{
 			break;
 		}
-
-
 
 		if (arr[x_head][y_head] != 2)
 		{
@@ -96,7 +95,6 @@ int main() {
 				y_dir = 1;
 			}
 		}
-
 	}
 
 
