@@ -1,28 +1,22 @@
 #include <iostream>
-
 using namespace std;
+int arr[10];
 
 int main() {
-	int N;
-	int K;
-	int X;
-	int ans = 0;
+	int N, K, ans = 0;
 	cin >> N >> K;
-	int* arr = new int[N];
 	for (int i = 0; i < N; i++)
 	{
-		cin >> X;
-		arr[i] = X;
+		cin >> arr[i];
 	}
-	for (int i = 0; i < N; i++)
+	for (int i = N - 1; i >= 0; i--)
 	{
-		while (K >= arr[N - 1 - i])
+		if (K >= arr[i])
 		{
-			K = K - arr[N - 1 - i];
-			ans++;
+			ans += K / arr[i];
+			K = K % arr[i];
 		}
 	}
-
 	cout << ans;
-	delete[] arr;
+
 }
