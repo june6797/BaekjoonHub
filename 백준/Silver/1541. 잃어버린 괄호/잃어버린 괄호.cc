@@ -1,64 +1,49 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
-#include <string>
 using namespace std;
 
 int main() {
 	string str;
 	cin >> str;
+	int num = 0;
 	int ans = 0;
-	int minus = 0;
-	string s = "";
-	for (int i = 0; i <= str.length(); i++)
+	bool flag = false;
+	for (int i = 0; i < str.size(); i++)
 	{
-		if (i == str.length())
+		if (str[i] == '-')
 		{
-			if (minus == 0)
-			{
-				ans = ans + stoi(s);
-				s = "";
+			if (flag) {
+				ans -= num;
 			}
 			else
 			{
-				ans = ans - stoi(s);
-				s = "";
+				ans += num;
 			}
+			num = 0;
+			flag = true;
 		}
-		else if (str.at(i) == '-')
+		else if (str[i] == '+')
 		{
-			if (minus == 0)
-			{
-				minus = 1;
-				ans = ans + stoi(s);
-				s = "";
+			if (flag) {
+				ans -= num;
 			}
 			else
 			{
-				ans = ans - stoi(s);
-				s = "";
+				ans += num;
 			}
-
+			num = 0;
 		}
-		else if (str.at(i) == '+')
+		else
 		{
-			if (minus == 0)
-			{
-				ans = ans + stoi(s);
-				s = "";
-			}
-			else
-			{
-				ans = ans - stoi(s);
-				s = "";
-			}
+			num = 10 * num + str[i] - '0';
 		}
-
-		else if (isdigit(str.at(i)))
-		{
-			s = s + str.at(i);
-		}
-
 	}
+	if (flag) {
+		ans -= num;
+	}
+	else
+	{
+		ans += num;
+	}
+	num = 0;
 	cout << ans;
 }
