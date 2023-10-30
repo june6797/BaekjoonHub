@@ -45,7 +45,7 @@ int main() {
 	long long int m = 1;
 	for (int i = 0; i < N - 1; i++)
 	{
-		long long int a, b, p, q;
+		int a, b, p, q;
 		cin >> a >> b >> p >> q;
 		v[a].push_back({ b, p, q });
 		v[b].push_back({ a, q, p });
