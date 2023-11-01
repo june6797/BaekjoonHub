@@ -38,7 +38,6 @@ int main() {
 	cin >> K;
 	for (int i = 0; i < K; i++)
 	{
-		flag = false;
 		int V, E;
 		cin >> V >> E;
 		for (int j = 0; j < E; j++)
@@ -68,5 +67,6 @@ int main() {
 			v[j].clear();
 			ans[j] = 0;
 		}
+		flag = false;
 	}
 }
