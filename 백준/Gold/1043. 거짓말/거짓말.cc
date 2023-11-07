@@ -10,7 +10,7 @@ int find(int a) {
 	}
 	else
 	{
-		return arr[a] = find(arr[a]);
+		return find(arr[a]);
 	}
 }
 
