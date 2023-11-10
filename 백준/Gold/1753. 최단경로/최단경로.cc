@@ -1,60 +1,64 @@
 #include <iostream>
-#include <queue>
 #include <vector>
+#include <queue>
 using namespace std;
 
-vector<pair<int, int>> adj[20001];
-int dist[20001];
-priority_queue<pair<int, int>> pq;
+int ans[20001];
+vector<pair<int, int>> v[20001];
+priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
 
-void dijkstra(int K) {
-	dist[K] = 0;
-	pq.push({ 0, K });
-	while (!pq.empty()) {
-		int cost = -pq.top().first;
-		int cur = pq.top().second;
+void Dijstra(int k) {
+	ans[k] = 0;
+	pq.push({ 0, k });
+	while (!pq.empty())
+	{
+		int node = pq.top().second;
+		int cost = pq.top().first;
 		pq.pop();
-		for (int i = 0; i < adj[cur].size(); i++)
+		for (int i = 0; i < v[node].size(); i++)
 		{
-			int next = adj[cur][i].first;
-			int ncost = cost + adj[cur][i].second;
-			if (ncost < dist[next])
+			int newnode = v[node][i].first;
+			int newcost = ans[node] + v[node][i].second;
+			if (ans[newnode] > newcost)
 			{
-				dist[next] = ncost;
-				pq.push({ -ncost, next });
+				ans[newnode] = newcost;
+				pq.push({ newcost, newnode });
 			}
 		}
-
 	}
 }
 
-
 int main() {
-	int V, E, K, u, v, w;
-	cin >> V >> E >> K;
-	for (int i = 0; i < 20001; i++)
-	{
-		dist[i] = 999999;
-	}
-	for (int i = 0; i < E; i++)
-	{
-		cin >> u >> v >> w;
-		adj[u].push_back({ v, w });
-	}
-	dijkstra(K);
-	for (int i = 1; i < V + 1; i++)
-	{
-		if (i == K)
-		{
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+	int n, m;
+	cin >> n >> m;
 
-		}
-		if (dist[i] == 999999)
+	int k;
+	cin >> k;
+	for (int i = 0; i <= n; i++)
+	{
+		ans[i] = 123456789;
+	}
+	for (int i = 0; i < m; i++)
+	{
+		int a, b, c;
+		cin >> a >> b >> c;
+		v[a].push_back({ b, c });
+	}
+	Dijstra(k);
+	for (int i = 1; i <= n; i++)
+	{
+		if (ans[i] == 123456789)
 		{
 			cout << "INF\n";
 		}
 		else
 		{
-			cout << dist[i] << "\n";
+			cout << ans[i] << "\n";
 		}
 	}
+
+
 }
