@@ -1,47 +1,32 @@
 #include <iostream>
-
+#include <vector>
+#include <queue>
 using namespace std;
 
-#define INF 1000000000
-int adj[1001][1001];
-int dist[1001];
-int visited[1001];
+int ans[1001];
+int visit[1001];
+vector<pair<int, int>> v[1001];
+priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
 
-int get_small_node(int N) {
-	int min = INF + 1;
-	int min_idx = 0;
-
-	for (int j = 1; j <= N; j++)
+void Dijstra(int k) {
+	ans[k] = 0;
+	pq.push({ 0, k });
+	while (!pq.empty())
 	{
-		if (visited[j] == 0 && dist[j] < min)
+		int node = pq.top().second;
+		int cost = pq.top().first;
+		pq.pop();
+		if (visit[node] == 0)
 		{
-			min = dist[j];
-			min_idx = j;
-		}
-	}
-	return min_idx;
-}
-
-void dijkstra(int start, int N) {
-	visited[start] = 1;
-	dist[start] = 0;
-	for (int i = 1; i <= N; i++)
-	{
-		dist[i] = adj[start][i];
-	}
-
-	for (int i = 0; i < N - 1; i++)
-	{
-		int min_node = get_small_node(N);
-
-		visited[min_node] = 1;
-		for (int k = 1; k <= N; k++)
-		{
-			if (visited[k] == 0)
+			visit[node] = 1;
+			for (int i = 0; i < v[node].size(); i++)
 			{
-				if (dist[k] > (dist[min_node] + adj[min_node][k]))
+				int newnode = v[node][i].first;
+				int newcost = v[node][i].second;
+				if (ans[newnode] > ans[node] + newcost)
 				{
-					dist[k] = (dist[min_node] + adj[min_node][k]);
+					ans[newnode] = ans[node] + newcost;
+					pq.push({ ans[newnode], newnode });
 				}
 			}
 		}
@@ -49,39 +34,24 @@ void dijkstra(int start, int N) {
 }
 
 int main() {
-	for (int i = 0; i < 1001; i++)
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+	int n, m;
+	cin >> n >> m;
+	for (int i = 0; i <= n; i++)
 	{
-		for (int j = 0; j < 1001; j++)
-		{
-			if (i == j)
-			{
-				adj[i][j] = 0;
-			}
-			else
-			{
-				adj[i][j] = INF;
-			}
-		}
+		ans[i] = 123456789;
 	}
-	for (int i = 0; i < 1001; i++)
+	for (int i = 0; i < m; i++)
 	{
-		dist[i] = INF;
+		int a, b, c;
+		cin >> a >> b >> c;
+		v[a].push_back({ b, c });
 	}
-
-	int N, M, s, d, w, start, end;
-	cin >> N >> M;
-	for (int i = 0; i < M; i++)
-	{
-		cin >> s >> d >> w; //s 시작도시 d 도착도시 w 비용
-		
-		if (w < adj[s][d]) {
-			adj[s][d] = w;
-		}
-	}
+	int start, end;
 	cin >> start >> end;
-	
-	dijkstra(start, N);
+	Dijstra(start);
+	cout << ans[end];
 
-	cout << dist[end];
-	
 }
