@@ -3,7 +3,6 @@
 #include <queue>
 using namespace std;
 
-int ans[1001];
 vector<pair<int, int>> v[1001];
 priority_queue<int> pq[1001];
 priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
