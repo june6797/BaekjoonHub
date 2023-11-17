@@ -25,7 +25,7 @@ void BF(int N) {
 		}
 	}
 
-	for (int t = 1; t < 100; t++)
+	for (int t = 1; t <= N; t++)
 	{
 		for (int i = 0; i <= N - 1; i++)
 		{
