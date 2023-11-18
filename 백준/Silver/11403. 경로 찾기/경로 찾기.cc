@@ -1,51 +1,35 @@
 #include <iostream>
 using namespace std;
-
 int arr[101][101];
-void dfs(int start, int n, int first) {
-	for (int i = 1; i <= n; i++)
-	{
-		if (i == start)
-		{
-
-		}
-		else if (arr[start][i] == 1)
-		{
-			if (arr[first][i] == 0 && start != first)
-			{
-				arr[first][i] = 1;
-				dfs(i, n, first);
-			}
-			else if (start == first)
-			{
-				dfs(i, n, first);
-			}
-		}
-	}
-}
 int main() {
-	int n;
-	cin >> n;
-	for (int i = 1; i <= n; i++)
+	int N;
+	cin >> N;
+	for (int i = 0; i < N; i++)
 	{
-		for (int j = 1; j <= n; j++)
+		for (int j = 0; j < N; j++)
 		{
 			cin >> arr[i][j];
 		}
 	}
-
-	for (int i = 1; i <= n; i++)
+	for (int k = 0; k < N; k++)
 	{
-		dfs(i, n, i);
+		for (int i = 0; i < N; i++)
+		{
+			for (int j = 0; j < N; j++)
+			{
+				if (arr[i][k] == 1 && arr[k][j] == 1)
+				{
+					arr[i][j] = 1;
+				}
+			}
+		}
 	}
-
-	for (int i = 1; i <= n; i++)
+	for (int i = 0; i < N; i++)
 	{
-		for (int j = 1; j <= n; j++)
+		for (int j = 0; j < N; j++)
 		{
 			cout << arr[i][j] << " ";
 		}
 		cout << "\n";
 	}
 }
-
