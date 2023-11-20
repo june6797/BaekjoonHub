@@ -3,7 +3,7 @@
 using namespace std;
 
 int arr[11][11];
-int visit[11][11];
+int visit[10][10];
 int x_move[4] = { -1, 0, 1, 0 };
 int y_move[4] = { 0, 1, 0, -1 };
 int landcount[100];
