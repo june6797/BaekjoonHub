@@ -1,11 +1,14 @@
 #include <iostream>
-#include <vector>
+#include <stack>
 using namespace std;
 
 long long int arr[100005];
-vector <int> s;
 
 int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	int N;
 	while (1)
 	{
 		int N;
@@ -14,30 +17,30 @@ int main() {
 		{
 			break;
 		}
-		long long ans = 0;
-		s.push_back(0);
+		stack <int> s;
+		long long int ans = 0;
+		s.push(0);
 		for (int i = 1; i <= N; i++)
 		{
 			cin >> arr[i];
 		}
 		for (int i = 1; i <= N + 1; i++)
 		{
-			while (!s.empty() && arr[s.back()] > arr[i])
+			while (!s.empty() && arr[s.top()] > arr[i])
 			{
-				int h = s.back();
-				s.pop_back();
-				int l = i - s.back() - 1;
-				ans = max(ans, arr[h] * l);
+				long long int h = arr[s.top()];
+				s.pop();
+				long long int l = i - s.top() - 1;
+				ans = max(ans, h * l);
 			}
-			s.push_back(i);
+			s.push(i);
 		}
-		cout << ans << "\n";
-
-
 		for (int i = 0; i < 100005; i++)
 		{
 			arr[i] = 0;
 		}
-		s.clear();
+		cout << ans << "\n";
 	}
+
+
 }
