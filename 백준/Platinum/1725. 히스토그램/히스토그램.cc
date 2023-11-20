@@ -24,7 +24,6 @@ int main() {
 			int h = arr[s.top()];
 			s.pop();
 			int l = i - s.top() - 1;
-
 			ans = max(ans, h * l);
 		}
 		s.push(i);
