@@ -2,37 +2,34 @@
 #include <stack>
 using namespace std;
 
-int arr[100001];
-stack <pair<int, long long int>> s;
+int arr[100005];
+stack <int> s;
+
 int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 	int N;
-	long long int ans = 0;
+	int ans = 0;
+	s.push(0);
 	cin >> N;
 	for (int i = 1; i <= N; i++)
 	{
 		cin >> arr[i];
 	}
-	s.push({ 0,0 });
-
-	for (int i = 1; i <= N; i++)
+	for (int i = 1; i <= N + 1; i++)
 	{
-		while (s.top().second > arr[i])
+		while (!s.empty() && arr[s.top()] > arr[i])
 		{
-			long long int h = s.top().second;
-			long long int b = i - 1;
+			int h = arr[s.top()];
 			s.pop();
-			long long int a = s.top().first;
-			ans = max(ans, h * (b - a));
+			int l = i - s.top() - 1;
+
+			ans = max(ans, h * l);
 		}
-		s.push({ i, arr[i] });
+		s.push(i);
 	}
-	while (s.size() > 1)
-	{
-		long long int h = s.top().second;
-		long long int b = N;
-		s.pop();
-		long long int a = s.top().first;
-		ans = max(ans, h * (b - a));
-	}
-	cout << ans;
+
+	cout << ans << "\n";
+
 }
