@@ -2,7 +2,7 @@
 #include <cmath>
 using namespace std;
 
-int tree[500001];
+int tree[300001];
 
 int getMin(int a, int b) {
 	int ans = 1234567890;
@@ -33,7 +33,6 @@ int main() {
 	int height = ceil(log2(N));
 	int treesize = pow(2, height + 1);
 	int start = treesize / 2;
-
 	for (int i = 1; i < treesize; i++)
 	{
 		tree[i] = 1234567890;
