@@ -68,8 +68,8 @@ int main() {
 			s.pop();
 			if (rvisit[t] == 0)
 			{
-				cnt++;
 				rDFS(t, cnt);
+				cnt++;
 			}
 		}
 		for (int i = 1; i <= V; i++)
@@ -82,7 +82,7 @@ int main() {
 				}
 			}
 		}
-		for (int i = 1; i <= cnt; i++)
+		for (int i = 0; i < cnt; i++)
 		{
 			if (indegree[i] == 0)
 			{
