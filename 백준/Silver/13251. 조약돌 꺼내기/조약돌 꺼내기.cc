@@ -30,6 +30,6 @@ int main() {
 	}
 
 	cout.precision(9);
-	cout << fixed;
 	cout << ans;
+
 }
