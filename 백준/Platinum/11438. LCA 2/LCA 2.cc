@@ -7,7 +7,7 @@ using namespace std;
 vector<int> v[100001];
 int visit[100001];
 int depth[100001];
-int parent[21][100001];
+int parent[18][100001];
 queue<int> q;
 void BFS(int start) {
 	visit[start] = 1;
