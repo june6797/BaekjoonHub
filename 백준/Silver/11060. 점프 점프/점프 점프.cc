@@ -17,10 +17,7 @@ int main() {
 		int jump = maze[i];
 		for (int j = 1; j <= jump; j++)
 		{
-			if (i + j <= N)
-			{
-				dp[i + j] = min(dp[i + j], dp[i] + 1);
-			}
+			dp[i + j] = min(dp[i + j], dp[i] + 1);
 		}
 	}
 	if (dp[N] != 987654321)
