@@ -8,7 +8,7 @@ long long int DFS(int w, int h) {
 	{
 		return 1;
 	}
-	if (h == -1)
+	if (h < 0)
 	{
 		return 0;
 	}
