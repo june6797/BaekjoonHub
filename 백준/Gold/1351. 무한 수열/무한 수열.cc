@@ -4,7 +4,7 @@ using namespace std;
 
 unordered_map<long long int, long long int> m;
 
-long long int DFS(long long int N, long long int P, long long int Q) {
+long long int DFS(long long int N, int P, int Q) {
 	if (N == 0)
 	{
 		return m[0];
@@ -18,7 +18,8 @@ long long int DFS(long long int N, long long int P, long long int Q) {
 int main() {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
-	long long int N, P, Q;
+	long long int N;
+	int P, Q;
 	cin >> N >> P >> Q;
 	m.insert({ 0, 1 });
 	cout << DFS(N, P, Q);
