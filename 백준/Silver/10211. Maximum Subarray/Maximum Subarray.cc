@@ -17,16 +17,12 @@ int main() {
 		{
 			cin >> arr[i];
 		}
+		int sum = 0;
 		int ans = -1001;
 		for (int i = 1; i <= N; i++)
 		{
-			int s = arr[i];
-			ans = max(ans, s);
-			for (int j = i + 1; j <= N; j++)
-			{
-				s += arr[j];
-				ans = max(ans, s);
-			}
+			sum = max(sum, 0) + arr[i];
+			ans = max(sum, ans);
 		}
 		cout << ans << "\n";
 
