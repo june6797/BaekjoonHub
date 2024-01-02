@@ -7,14 +7,18 @@ bool flag[21];
 void DFS(int cnt, int start, int M, int s, int sum) {
 	if (cnt == M)
 	{
+
 		if (s == S)
 		{
 			ans++;
 		}
-		/*if (sum - s == S)
+		if (sum - s == S)
 		{
-			ans++;
-		}*/
+			if (M * 2 != N)
+			{
+				ans++;
+			}
+		}
 		return;
 	}
 
@@ -35,7 +39,11 @@ int main() {
 		cin >> arr[i];
 		sum += arr[i];
 	}
-	for (int i = 1; i <= N; i++)
+	if (sum == S)
+	{
+		ans++;
+	}
+	for (int i = 1; i <= N / 2; i++)
 	{
 		DFS(0, 0, i, 0, sum);
 	}
