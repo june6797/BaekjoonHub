@@ -4,7 +4,6 @@ using namespace std;
 
 int sudo[9][9];
 vector<pair<int, int>> v;
-bool f = false;
 bool can(int x, int y) {
 	for (int i = 0; i < 9; i++)
 	{
@@ -34,11 +33,10 @@ bool can(int x, int y) {
 	}
 	return true;
 }
-void DFS(int cnt, int level) {
+bool DFS(int cnt, int level) {
 	if (cnt == level)
 	{
-		f = true;
-		return;
+		return true;
 	}
 
 	int x = v[cnt].first;
@@ -48,14 +46,14 @@ void DFS(int cnt, int level) {
 		sudo[x][y] = i;
 		if (can(x, y))
 		{
-			DFS(cnt + 1, level);
-		}
-		if (f == true)
-		{
-			break;
+			if (DFS(cnt + 1, level))
+			{
+				return true;
+			}
 		}
 		sudo[x][y] = 0;
 	}
+	return false;
 }
 int main() {
 	ios::sync_with_stdio(false);
