@@ -32,10 +32,6 @@ void DFS(int cnt, int s, int M, int N) {
 		ans = min(ans, minus);
 		return;
 	}
-	if (s + M - cnt > N)
-	{
-		return;
-	}
 	for (int i = s + 1; i <= N; i++)
 	{
 		team[i] = 1;
