@@ -5,46 +5,34 @@ using namespace std;
 
 int ans = 0;
 int N;
-
+int levelmax[10];
 void move_board(int temp[21][21], int num) {
 	if (num == 0)
 	{
-		for (int i = 0; i < N; i++)
+		for (int j = 0; j < N; j++)
 		{
-			deque<int> v;
-			deque<int> d;
-			for (int j = 0; j < N; j++)
+			int data = -1;
+			int idx = -1;
+			for (int i = 0; i < N; i++)
 			{
-				if (temp[j][i] != 0)
+				if (temp[i][j] != 0)
 				{
-					v.push_back(temp[j][i]);
+					if (temp[i][j] == data)
+					{
+						temp[idx][j] = 2 * temp[idx][j];
+						data = -1;
+					}
+					else
+					{
+						data = temp[i][j];
+						idx++;
+						temp[idx][j] = temp[i][j];
+					}
 				}
 			}
-			while (v.size() > 1)
+			for (int i = idx + 1; i < N; i++)
 			{
-				int first = v.front();
-				v.pop_front();
-				if (first == v.front())
-				{
-					d.push_back(first * 2);
-					v.pop_front();
-				}
-				else
-				{
-					d.push_back(first);
-				}
-			}
-			if (v.size() == 1)
-			{
-				d.push_back(v.front());
-			}
-			while (d.size() != N)
-			{
-				d.push_back(0);
-			}
-			for (int j = 0; j < N; j++)
-			{
-				temp[j][i] = d[j];
+				temp[i][j] = 0;
 			}
 		}
 	}
@@ -52,82 +40,57 @@ void move_board(int temp[21][21], int num) {
 	{
 		for (int i = 0; i < N; i++)
 		{
-			deque<int> v;
-			deque<int> d;
+			int data = -1;
+			int idx = N;
 			for (int j = N - 1; j >= 0; j--)
 			{
 				if (temp[i][j] != 0)
 				{
-					v.push_back(temp[i][j]);
+					if (temp[i][j] == data)
+					{
+						temp[i][idx] = 2 * temp[i][idx];
+						data = -1;
+					}
+					else
+					{
+						data = temp[i][j];
+						idx--;
+						temp[i][idx] = temp[i][j];
+					}
 				}
 			}
-			while (v.size() > 1)
+			for (int j = idx - 1; j >= 0; j--)
 			{
-				int first = v.front();
-				v.pop_front();
-				if (first == v.front())
-				{
-					d.push_back(first * 2);
-					v.pop_front();
-				}
-				else
-				{
-					d.push_back(first);
-				}
-			}
-			if (v.size() == 1)
-			{
-				d.push_back(v.front());
-			}
-			while (d.size() != N)
-			{
-				d.push_back(0);
-			}
-			for (int j = 0; j < N; j++)
-			{
-				temp[i][N - 1 - j] = d[j];
+				temp[i][j] = 0;
 			}
 		}
 	}
 	else if (num == 2)
 	{
-		for (int i = 0; i < N; i++)
+		for (int j = 0; j < N; j++)
 		{
-
-			deque<int> v;
-			deque<int> d;
-			for (int j = N - 1; j >= 0; j--)
+			int data = -1;
+			int idx = N;
+			for (int i = N - 1; i >= 0; i--)
 			{
-				if (temp[j][i] != 0)
+				if (temp[i][j] != 0)
 				{
-					v.push_back(temp[j][i]);
+					if (temp[i][j] == data)
+					{
+						temp[idx][j] = 2 * temp[idx][j];
+						data = -1;
+					}
+					else
+					{
+						data = temp[i][j];
+						idx--;
+						temp[idx][j] = temp[i][j];
+					}
 				}
 			}
-			while (v.size() > 1)
+			for (int i = idx - 1; i >= 0; i--)
 			{
-				int first = v.front();
-				v.pop_front();
-				if (first == v.front())
-				{
-					d.push_back(first * 2);
-					v.pop_front();
-				}
-				else
-				{
-					d.push_back(first);
-				}
-			}
-			if (v.size() == 1)
-			{
-				d.push_back(v.front());
-			}
-			while (d.size() != N)
-			{
-				d.push_back(0);
-			}
-			for (int j = 0; j < N; j++)
-			{
-				temp[N - 1 - j][i] = d[j];
+				temp[i][j] = 0;
 			}
 		}
 	}
@@ -135,41 +98,28 @@ void move_board(int temp[21][21], int num) {
 	{
 		for (int i = 0; i < N; i++)
 		{
-
-			deque<int> v;
-			deque<int> d;
+			int data = -1;
+			int idx = -1;
 			for (int j = 0; j < N; j++)
 			{
 				if (temp[i][j] != 0)
 				{
-					v.push_back(temp[i][j]);
+					if (temp[i][j] == data)
+					{
+						temp[i][idx] = 2 * temp[i][idx];
+						data = -1;
+					}
+					else
+					{
+						data = temp[i][j];
+						idx++;
+						temp[i][idx] = temp[i][j];
+					}
 				}
 			}
-			while (v.size() > 1)
+			for (int j = idx + 1; j < N; j++)
 			{
-				int first = v.front();
-				v.pop_front();
-				if (first == v.front())
-				{
-					d.push_back(first * 2);
-					v.pop_front();
-				}
-				else
-				{
-					d.push_back(first);
-				}
-			}
-			if (v.size() == 1)
-			{
-				d.push_back(v.front());
-			}
-			while (d.size() != N)
-			{
-				d.push_back(0);
-			}
-			for (int j = 0; j < N; j++)
-			{
-				temp[i][j] = d[j];
+				temp[i][j] = 0;
 			}
 		}
 	}
@@ -178,41 +128,58 @@ void move_board(int temp[21][21], int num) {
 void DFS(int cnt, int level, int board[21][21]) {
 	if (cnt == level)
 	{
+		for (int i = 0; i < N; i++)
+		{
+			for (int j = 0; j < N; j++)
+			{
+				ans = max(ans, board[i][j]);
+			}
+		}
 		return;
 	}
 	int temp[21][21];
-
-	for (int i = 0; i < 4; i++)
+	int maxtemp = 0;
+	for (int j = 0; j < N; j++)
 	{
-		int maxtemp = 0;
-		for (int j = 0; j < N; j++)
+		for (int k = 0; k < N; k++)
 		{
-			for (int k = 0; k < N; k++)
-			{
-				temp[j][k] = board[j][k];
-			}
+			maxtemp = max(maxtemp, board[j][k]);
+			ans = max(ans, board[j][k]);
 		}
-		move_board(temp, i);
-		bool diff = false;
-		for (int j = 0; j < N; j++)
+	}
+	for (int j = 0; j < N - cnt; j++)
+	{
+		maxtemp *= 2;
+	}
+	if (maxtemp > ans)
+	{
+		for (int i = 0; i < 4; i++)
 		{
-			for (int k = 0; k < N; k++)
+			for (int j = 0; j < N; j++)
 			{
-				maxtemp = max(maxtemp, temp[j][k]);
-				ans = max(ans, temp[j][k]);
-				if (temp[j][k] != board[j][k])
+				for (int k = 0; k < N; k++)
 				{
-					diff = true;
+					temp[j][k] = board[j][k];
 				}
 			}
-		}
-		for (int j = 0; j < N - cnt - 1; j++)
-		{
-			maxtemp *= 2;
-		}
-		if (diff && maxtemp > ans)
-		{
-			DFS(cnt + 1, level, temp);
+			move_board(temp, i);
+			bool diff = false;
+			for (int j = 0; j < N; j++)
+			{
+				for (int k = 0; k < N; k++)
+				{
+					if (temp[j][k] != board[j][k])
+					{
+						diff = true;
+						break;
+					}
+				}
+			}
+			if (diff)
+			{
+				DFS(cnt + 1, level, temp);
+			}
+
 		}
 	}
 }
