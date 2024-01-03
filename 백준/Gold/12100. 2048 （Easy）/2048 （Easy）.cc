@@ -178,47 +178,42 @@ void move_board(int temp[21][21], int num) {
 void DFS(int cnt, int level, int board[21][21]) {
 	if (cnt == level)
 	{
-		for (int i = 0; i < N; i++)
-		{
-			for (int j = 0; j < N; j++)
-			{
-				ans = max(ans, board[i][j]);
-			}
-		}
 		return;
 	}
 	int temp[21][21];
 
-	int maxtemp = 0;
 	for (int i = 0; i < 4; i++)
 	{
+		int maxtemp = 0;
 		for (int j = 0; j < N; j++)
 		{
 			for (int k = 0; k < N; k++)
 			{
 				temp[j][k] = board[j][k];
-				maxtemp = max(maxtemp, board[i][j]);
 			}
 		}
 		move_board(temp, i);
 		bool diff = false;
-		for (int i = 0; i < N; i++)
+		for (int j = 0; j < N; j++)
 		{
-			for (int j = 0; j < N; j++)
+			for (int k = 0; k < N; k++)
 			{
-				if (temp[i][j] != board[i][j])
+				maxtemp = max(maxtemp, temp[j][k]);
+				ans = max(ans, temp[j][k]);
+				if (temp[j][k] != board[j][k])
 				{
 					diff = true;
 				}
 			}
 		}
-		for (int i = 0; i < N - cnt; i++)
+		for (int j = 0; j < N - cnt - 1; j++)
 		{
 			maxtemp *= 2;
 		}
-		
-		DFS(cnt + 1, level, temp);
-		
+		if (diff && maxtemp > ans)
+		{
+			DFS(cnt + 1, level, temp);
+		}
 	}
 }
 
