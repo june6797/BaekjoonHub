@@ -125,8 +125,8 @@ void move_board(int temp[21][21], int num) {
 	}
 }
 
-void DFS(int cnt, int level, int board[21][21]) {
-	if (cnt == level)
+void DFS(int cnt, int board[21][21]) {
+	if (cnt == 5)
 	{
 		for (int i = 0; i < N; i++)
 		{
@@ -177,7 +177,7 @@ void DFS(int cnt, int level, int board[21][21]) {
 			}
 			if (diff)
 			{
-				DFS(cnt + 1, level, temp);
+				DFS(cnt + 1, temp);
 			}
 
 		}
@@ -197,6 +197,6 @@ int main() {
 			cin >> board[i][j];
 		}
 	}
-	DFS(0, 5, board);
+	DFS(0, board);
 	cout << ans;
 }
