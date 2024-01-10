@@ -7,6 +7,24 @@ int zero = 0, minusone = 0, plusone = 0;
 bool onecolor(int size, int x, int y) {
 	if (size == 1)
 	{
+		return true;
+	}
+	int start = arr[x][y];
+	for (int i = x; i < x + size; i++)
+	{
+		for (int j = y; j < y + size; j++)
+		{
+			if (start != arr[i][j])
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+void findpaper(int size, int x, int y) {
+	if (onecolor(size, x, y))
+	{
 		int what = arr[x][y];
 		switch (what)
 		{
@@ -22,39 +40,6 @@ bool onecolor(int size, int x, int y) {
 		default:
 			break;
 		}
-		return true;
-	}
-	int start = arr[x][y];
-	for (int i = x; i < x + size; i++)
-	{
-		for (int j = y; j < y + size; j++)
-		{
-			if (start != arr[i][j])
-			{
-				return false;
-			}
-		}
-	}
-	int what = arr[x][y];
-	switch (what)
-	{
-	case -1:
-		minusone++;
-		break;
-	case 0:
-		zero++;
-		break;
-	case 1:
-		plusone++;
-		break;
-	default:
-		break;
-	}
-	return true;
-}
-void findpaper(int size, int x, int y) {
-	if (onecolor(size, x, y))
-	{
 		return;
 	}
 	int nsize = size / 3;
