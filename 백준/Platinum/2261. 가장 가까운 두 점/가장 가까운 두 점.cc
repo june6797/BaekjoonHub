@@ -6,10 +6,10 @@ using namespace std;
 struct Point {
 	int x, y;
 };
-bool xcmp(Point& p1, Point& p2) {
+bool xcmp(Point p1, Point p2) {
 	return p1.x < p2.x;
 }
-bool ycmp(Point& p1, Point& p2) {
+bool ycmp(Point p1, Point p2) {
 	return p1.y < p2.y;
 }
 vector<Point> v;
