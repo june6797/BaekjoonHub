@@ -3,21 +3,15 @@
 #include <algorithm>
 using namespace std;
 
-struct Point {
-	int x, y;
-};
-bool xcmp(Point p1, Point p2) {
-	return p1.x < p2.x;
+bool cmp(pair<int, int> p1, pair<int, int> p2) {
+	return p1.second < p2.second;
 }
-bool ycmp(Point p1, Point p2) {
-	return p1.y < p2.y;
-}
-vector<Point> v;
+vector<pair<int, int>> v;
 int n;
 
-int dist(Point p1, Point p2) {
-	int x = p1.x - p2.x;
-	int y = p1.y - p2.y;
+int dist(pair<int, int> p1, pair<int, int> p2) {
+	int x = p1.first - p2.first;
+	int y = p1.second - p2.second;
 	return x * x + y * y;
 }
 
@@ -37,22 +31,22 @@ int divide(int left, int right) {
 	int mid = (left + right) / 2;
 	int ans = min(divide(left, mid), divide(mid + 1, right));
 
-	vector<Point> temp;
-	int midline = (v[mid].x + v[mid + 1].x) / 2;
+	vector<pair<int, int>> temp;
+	int midline = (v[mid].first + v[mid + 1].first) / 2;
 
 	for (int i = left; i <= right; i++)
 	{
-		if ((midline - v[i].x) * (midline - v[i].x) < ans)
+		if ((midline - v[i].first) * (midline - v[i].first) < ans)
 		{
 			temp.push_back(v[i]);
 		}
 	}
-	sort(temp.begin(), temp.end(), ycmp);
+	sort(temp.begin(), temp.end(), cmp);
 	for (int i = 0; i < temp.size(); i++)
 	{
 		for (int j = i + 1; j < temp.size(); j++)
 		{
-			if ((temp[i].y - temp[j].y) * (temp[i].y - temp[j].y) >= ans)
+			if ((temp[i].second - temp[j].second) * (temp[i].second - temp[j].second) >= ans)
 			{
 				break;
 			}
@@ -75,7 +69,7 @@ int main() {
 		cin >> x >> y;
 		v.push_back({ x, y });
 	}
-	sort(v.begin(), v.end(), xcmp);
+	sort(v.begin(), v.end());
 	cout << divide(0, n - 1);
 
 }
