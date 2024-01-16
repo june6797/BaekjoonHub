@@ -4,9 +4,9 @@
 using namespace std;
 
 long long int mul(int b, int m) {
-	if (m == 0)
+	if (m == 1)
 	{
-		return 1;
+		return b;
 	}
 	if (m % 2 == 1)
 	{
