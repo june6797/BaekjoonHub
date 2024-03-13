@@ -29,7 +29,7 @@ int main() {
 	{
 		int sum = arr[0];
 		int ans = 987654321;
-		while (end <= N)
+		while (end < N)
 		{
 			if (sum < S)
 			{
