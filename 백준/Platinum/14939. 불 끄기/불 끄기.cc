@@ -48,12 +48,11 @@ void turnoff() {
 		int tt = i;
 		for (int j = 0; j < 10; j++)
 		{
-			if (tt % 2 == 1)
+			if (tt & (1 << j))
 			{
 				push(0, j);
 				ans++;
 			}
-			tt /= 2;
 		}
 		for (int k = 1; k < 10; k++)
 		{
