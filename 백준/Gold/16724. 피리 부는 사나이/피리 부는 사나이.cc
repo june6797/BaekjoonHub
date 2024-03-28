@@ -35,9 +35,7 @@ void DFS(int x, int y) {
 	int ny = y + dy[arr[x][y]];
 	if (visit[nx][ny] == 0)
 	{
-		pair<int, int> p = { nx, ny };
 		DFS(nx, ny);
-		uni({ x, y }, p);
 	}
 	uni({ x, y }, { nx, ny });
 }
