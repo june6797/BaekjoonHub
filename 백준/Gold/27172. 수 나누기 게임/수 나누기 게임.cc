@@ -27,7 +27,6 @@ int main() {
 		v1.push_back(num);
 		check[num] = true;
 	}
-	sort(v.begin(), v.end());
 	for (int i = 0; i < v.size(); i++)
 	{
 		int a = v[i];
