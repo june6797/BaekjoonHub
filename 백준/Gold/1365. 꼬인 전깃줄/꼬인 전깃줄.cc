@@ -14,13 +14,13 @@ int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(0);
 	cout.tie(0);
-	int n;
-	cin >> n;
-	for (int i = 0; i < n; i++)
+	int N;
+	cin >> N;
+	for (int i = 0; i < N; i++)
 	{
 		int num;
 		cin >> num;
-		if (v.size() == 0)
+		if (v.empty())
 		{
 			v.push_back(num);
 		}
@@ -50,5 +50,5 @@ int main() {
 			}
 		}
 	}
-	cout << n - v.size();
+	cout << N - v.size();
 }
