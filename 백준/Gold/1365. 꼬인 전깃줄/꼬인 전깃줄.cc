@@ -46,7 +46,7 @@ int main() {
 						end = mid;
 					}
 				}
-				v[start] = num;
+				v[end] = num;
 			}
 		}
 	}
