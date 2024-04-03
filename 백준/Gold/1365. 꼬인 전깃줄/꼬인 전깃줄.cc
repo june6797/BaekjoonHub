@@ -26,7 +26,7 @@ int main() {
 		}
 		else
 		{
-			if (v[v.size() - 1] < num)
+			if (v.back() < num)
 			{
 				v.push_back(num);
 			}
@@ -46,7 +46,7 @@ int main() {
 						end = mid;
 					}
 				}
-				v[end] = num;
+				v[start] = num;
 			}
 		}
 	}
