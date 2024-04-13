@@ -15,11 +15,11 @@ int arr[231];
 int dp[201][201];
 int solve(int idx, int cnt) {
 
-	if (idx >= n + 1 && cnt <= t)
+	if (idx >= n + 1)
 	{
 		return 0;
 	}
-	else if (cnt > t)
+	if (cnt == t)
 	{
 		return -123456789;
 	}
