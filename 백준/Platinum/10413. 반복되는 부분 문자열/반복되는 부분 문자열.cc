@@ -24,13 +24,13 @@ void getSuffixArray(string str) {
 	n = str.size();
 	for (int i = 0; i < n; i++)
 	{
-		group[i] = str[i] - 'A';
+		group[i] = str[i];
 		suffix[i] = i;
 	}
 
 	while (t < n)
 	{
-		group[n] = -1;
+		group[n] = -100000;
 		sort(suffix, suffix + n, compare);
 
 		newgroup[suffix[0]] = 0;
