@@ -7,19 +7,17 @@ typedef pair<int, int> pii;
 
 ll fac[4000001];
 ll solve(ll a, ll b) {
-	if (b == 1)
+	ll ret = 1;
+	while (b)
 	{
-		return a;
+		if (b & 1)
+		{
+			ret = ret * a % mod;
+		}
+		b /= 2;
+		a = a * a % mod;
 	}
-	ll x = solve(a, b / 2) % mod;
-	if (b % 2 == 0)
-	{
-		return (x * x) % mod;
-	}
-	else
-	{
-		return (((x * x) % mod) * a) % mod;
-	}
+	return ret;
 }
 int main() {
 	ios_base::sync_with_stdio(false);
