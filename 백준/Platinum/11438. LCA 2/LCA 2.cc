@@ -1,42 +1,42 @@
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <cmath>
+#include <bits/stdc++.h>
+#define mod 1000000007
+typedef long long int ll;
+const int INF = 1234567890;
 using namespace std;
 
-vector<int> v[100001];
-int visit[100001];
+int n, m;
+vector<int> edges[100001];
+int parent[20][100001];
 int depth[100001];
-int parent[18][100001];
-queue<int> q;
+bool visited[100001];
 void BFS(int start) {
-	visit[start] = 1;
+	visited[start] = 1;
+	queue<int> q;
 	q.push(start);
 	while (!q.empty())
 	{
 		int t = q.front();
 		q.pop();
-		for (int i = 0; i < v[t].size(); i++)
+		for (int i = 0; i < edges[t].size(); i++)
 		{
-			if (visit[v[t][i]] == 0)
+			int next = edges[t][i];
+			if (!visited[next])
 			{
-				visit[v[t][i]] = 1;
-				parent[0][v[t][i]] = t;
-				depth[v[t][i]] = depth[t] + 1;
-				q.push(v[t][i]);
+				visited[next] = 1;
+				parent[0][next] = t;
+				depth[next] = depth[t] + 1;
+				q.push(next);
 			}
 		}
 	}
 }
 
-void LCA(int a, int b, int m) {
+void LCA(int a, int b, int kmax) {
 	if (depth[a] < depth[b])
 	{
-		int temp = a;
-		a = b;
-		b = temp;
+		swap(a, b);
 	}
-	for (int i = m; i >= 0; i--)
+	for (int i = kmax; i >= 0; i--)
 	{
 		if (pow(2, i) <= depth[a] - depth[b])
 		{
@@ -46,14 +46,13 @@ void LCA(int a, int b, int m) {
 			}
 		}
 	}
-	for (int i = m; i >= 0 && a != b; i--)
+	for (int i = kmax; i >= 0 && a != b; i--)
 	{
 		if (parent[i][a] != parent[i][b])
 		{
 			a = parent[i][a];
 			b = parent[i][b];
 		}
-
 	}
 	if (a != b)
 	{
@@ -64,34 +63,32 @@ void LCA(int a, int b, int m) {
 		cout << a << "\n";
 	}
 }
-
 int main() {
 	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
-	int N, M;
-	cin >> N;
-	for (int i = 0; i < N - 1; i++)
+	cin.tie(0);
+	cout.tie(0);
+	cin >> n;
+	for (int i = 0; i < n - 1; i++)
 	{
 		int a, b;
 		cin >> a >> b;
-		v[a].push_back(b);
-		v[b].push_back(a);
+		edges[a].push_back(b);
+		edges[b].push_back(a);
 	}
 	BFS(1);
-	int max = log2(N) + 1;
-	for (int i = 1; i <= max; i++)
+	int kmax = log2(n) + 1;
+	for (int i = 1; i <= kmax; i++)
 	{
-		for (int j = 1; j <= N; j++)
+		for (int j = 1; j <= n; j++)
 		{
 			parent[i][j] = parent[i - 1][parent[i - 1][j]];
 		}
 	}
-	cin >> M;
-	for (int i = 0; i < M; i++)
+	cin >> m;
+	for (int i = 0; i < m; i++)
 	{
 		int a, b;
 		cin >> a >> b;
-		LCA(a, b, max);
+		LCA(a, b, kmax);
 	}
 }
