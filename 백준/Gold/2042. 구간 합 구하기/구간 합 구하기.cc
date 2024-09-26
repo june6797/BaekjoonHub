@@ -8,16 +8,17 @@ int n, m, k;
 ll arr[1000001];
 ll tree[4000001];
 
-ll make_tree(int node, int start, int end) {
+void init(int node, int start, int end) {
 	if (start == end)
 	{
-		return tree[node] = arr[start];
+		tree[node] = arr[start];
+		return;
 	}
 	int mid = (start + end) / 2;
-	ll left = make_tree(2 * node, start, mid);
-	ll right = make_tree(2 * node + 1, mid + 1, end);
-	tree[node] = left + right;
-	return tree[node];
+	init(2 * node, start, mid);
+	init(2 * node + 1, mid + 1, end);
+	tree[node] = tree[2 * node] + tree[2 * node + 1];
+	return;
 }
 
 void update(int node, int start, int end, int target, ll diff) {
@@ -55,7 +56,7 @@ int main() {
 	{
 		cin >> arr[i];
 	}
-	make_tree(1, 1, n);
+	init(1, 1, n);
 	for (int i = 0; i < m + k; i++)
 	{
 		ll a, b, c;
