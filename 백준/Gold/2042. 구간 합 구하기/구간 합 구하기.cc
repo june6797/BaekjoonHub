@@ -1,68 +1,74 @@
-#include <iostream>
-#include <cmath>
+#include <bits/stdc++.h>
+#define mod 1000000007;
+#define INF 1234567890;
+typedef long long ll;
 using namespace std;
 
-long long int arr[5000001];
+int n, m, k;
+ll arr[1000001];
+ll tree[4000001];
 
-void change(int idx, long long int c) {
-	long long int diff = c - arr[idx];
-	while (idx > 0)
+ll make_tree(int node, int start, int end) {
+	if (start == end)
 	{
-		arr[idx] += diff;
-		idx /= 2;
+		return tree[node] = arr[start];
 	}
-
-}
-void calsum(int start, int end) {
-	long long sum = 0;
-	while (start <= end)
-	{
-		if (start % 2 == 1)
-		{
-			sum += arr[start];
-			start++;
-		}
-		if (end % 2 == 0)
-		{
-			sum += arr[end];
-			end--;
-		}
-		start /= 2;
-		end /= 2;
-	}
-	cout << sum << "\n";
+	int mid = (start + end) / 2;
+	ll left = make_tree(2 * node, start, mid);
+	ll right = make_tree(2 * node + 1, mid + 1, end);
+	tree[node] = left + right;
+	return tree[node];
 }
 
+void update(int node, int start, int end, int target, ll diff) {
+	if (target < start || target > end)
+	{
+		return;
+	}
+	tree[node] += diff;
+	if (start == end)
+	{
+		return;
+	}
+	int mid = (start + end) / 2;
+	update(2 * node, start, mid, target, diff);
+	update(2 * node + 1, mid + 1, end, target, diff);
+}
+ll treesum(int node, int start, int end, int left, int right) {
+	if (left > end || right < start)
+	{
+		return 0;
+	}
+	if (left <= start && end <= right)
+	{
+		return tree[node];
+	}
+	int mid = (start + end) / 2;
+	return treesum(2 * node, start, mid, left, right) + treesum(2 * node + 1, mid + 1, end, left, right);
+}
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
-	int N, M, K;
-	cin >> N >> M >> K;
-	int height = ceil(log2(N));
-	int treesize = pow(2, height + 1);
-	int startindex = treesize / 2;
-	for (int i = startindex; i < startindex + N; i++)
+	ios_base::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+	cin >> n >> m >> k;
+	for (int i = 1; i <= n; i++)
 	{
 		cin >> arr[i];
 	}
-	int temp = treesize - 1;
-	while (temp != 1)
+	make_tree(1, 1, n);
+	for (int i = 0; i < m + k; i++)
 	{
-		arr[temp / 2] += arr[temp];
-		temp--;
-	}
-	for (int i = 0; i < M + K; i++)
-	{
-		long long int a, b, c;
+		ll a, b, c;
 		cin >> a >> b >> c;
 		if (a == 1)
 		{
-			change(startindex + b - 1, c);
+			ll diff = c - arr[b];
+			arr[b] = c;
+			update(1, 1, n, b, diff);
 		}
-		else if (a == 2)
+		else
 		{
-			calsum(startindex + b - 1, startindex + c - 1);
+			cout << treesum(1, 1, n, b, c) << "\n";
 		}
 	}
 }
