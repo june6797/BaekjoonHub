@@ -49,18 +49,18 @@ int main() {
 	for (int i = 1; i <= n; i++)
 	{
 		cin >> arr[i];
-		arr[i]++;
+		arr[i];
 	}
 	for (int i = 1; i < k; i++)
 	{
-		update(1, 1, 70000, arr[i], 1);
+		update(1, 0, 70000, arr[i], 1);
 	}
 	ll ans = 0;
 	for (int i = k; i <= n; i++)
 	{
-		update(1, 1, 70000, arr[i], 1);
-		ans += query(1, 1, 70000, (k + 1) / 2);
-		update(1, 1, 70000, arr[i - k + 1], -1);
+		update(1, 0, 70000, arr[i], 1);
+		ans += query(1, 0, 70000, (k + 1) / 2);
+		update(1, 0, 70000, arr[i - k + 1], -1);
 	}
-	cout << ans - n + k - 1;
+	cout << ans;
 }
