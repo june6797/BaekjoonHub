@@ -14,15 +14,14 @@ void update(int node, int start, int end, int target, int diff) {
 	{
 		return;
 	}
+	tree[node] += diff;
 	if (start == end)
 	{
-		tree[node] += diff;
 		return;
 	}
 	int mid = (start + end) / 2;
 	update(2 * node, start, mid, target, diff);
 	update(2 * node + 1, mid + 1, end, target, diff);
-	tree[node] = tree[2 * node] + tree[2 * node + 1];
 }
 
 ll query(int node, int start, int end, int val) {
@@ -49,19 +48,18 @@ int main() {
 	for (int i = 1; i <= n; i++)
 	{
 		cin >> arr[i];
-		arr[i]++;
+		arr[i];
 	}
 	for (int i = 1; i < k; i++)
 	{
-		update(1, 1, 65536, arr[i], 1);
+		update(1, 0, 70000, arr[i], 1);
 	}
 	ll ans = 0;
-	int prev = 1;
 	for (int i = k; i <= n; i++)
 	{
-		update(1, 1, 65536, arr[i], 1);
-		ans += query(1, 1, 65536, (k + 1) / 2);
-		update(1, 1, 65536, arr[prev++], -1);
+		update(1, 0, 70000, arr[i], 1);
+		ans += query(1, 0, 70000, (k + 1) / 2);
+		update(1, 0, 70000, arr[i - k + 1], -1);
 	}
-	cout << ans - n + k - 1;
+	cout << ans;
 }
