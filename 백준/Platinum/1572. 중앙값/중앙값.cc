@@ -14,15 +14,14 @@ void update(int node, int start, int end, int target, int diff) {
 	{
 		return;
 	}
+	tree[node] += diff;
 	if (start == end)
 	{
-		tree[node] += diff;
 		return;
 	}
 	int mid = (start + end) / 2;
 	update(2 * node, start, mid, target, diff);
 	update(2 * node + 1, mid + 1, end, target, diff);
-	tree[node] = tree[2 * node] + tree[2 * node + 1];
 }
 
 ll query(int node, int start, int end, int val) {
